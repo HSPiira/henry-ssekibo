@@ -105,13 +105,12 @@ export function About() {
                   viewport={{ once: true }}
                   className="relative w-full max-w-md mx-auto"
                 >
-                  <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+                  <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
                     <Image
                       src="/henry-ssekibo.jpg"
                       alt="Henry Ssekibo - IT Support & Digital Transformation Specialist"
-                      width={400}
-                      height={400}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   </div>
                   <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-black dark:bg-white rounded-full flex items-center justify-center">

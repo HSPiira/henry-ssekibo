@@ -16,7 +16,6 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-6xl mx-auto"
         >
           {/* Hero Section */}
           <div className="mb-16">

@@ -4,6 +4,26 @@ import { motion } from 'framer-motion'
 import { ArrowRight, X, ExternalLink, Github, CheckCircle, Clock, Lightbulb } from 'lucide-react'
 import { useState } from 'react'
 
+interface Project {
+  id: number
+  title: string
+  description: string
+  fullDescription: string
+  technologies: string[]
+  features: string[]
+  github: string
+  demo: string
+  status: string
+  background: string
+}
+
+interface ProjectCardProps {
+  project: Project
+  index: number
+  onClick: () => void
+  isMobile?: boolean
+}
+
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
 
@@ -125,6 +145,54 @@ export function Projects() {
     }
   }
 
+  function ProjectCard({ project, index, onClick, isMobile = false }: ProjectCardProps) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, [isMobile ? 'x' : 'y']: 30 }}
+        whileInView={{ opacity: 1, [isMobile ? 'x' : 'y']: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        viewport={{ once: true }}
+        className={`group ${project.background} p-6 border ${
+          isMobile 
+            ? 'flex-shrink-0 w-80' 
+            : 'border-r border-b hover:bg-gray-100 dark:hover:bg-gray-950'
+        } transition-all duration-300 cursor-pointer aspect-square flex flex-col justify-between`}
+        style={{ borderColor: '#0057FF' }}
+        onClick={onClick}
+      >
+        <div className="flex items-start justify-between mb-3">
+          <div className="text-lg font-thin text-black dark:text-white">
+            {String(project.id).padStart(2, '0')}
+          </div>
+          <div className="p-1">
+            {getStatusIcon(project.status)}
+          </div>
+        </div>
+        
+        <div className="flex-1">
+          <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-2 group-hover:text-black dark:group-hover:text-white transition-colors duration-300">
+            {project.title}
+          </h3>
+          
+          <p className="text-xs font-light text-gray-500 dark:text-gray-400 leading-relaxed">
+            {project.description}
+          </p>
+        </div>
+        
+        <div className="flex items-center justify-between mt-4">
+          {isMobile && (
+            <div className="text-xs text-gray-400 dark:text-gray-500">
+              Click for details
+            </div>
+          )}
+          <div className={`p-2 rounded-full transition-all duration-300 group-hover:opacity-80 ${isMobile ? '' : 'ml-auto'}`} style={{ backgroundColor: '#0057FF' }}>
+            <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-all duration-300" />
+          </div>
+        </div>
+      </motion.div>
+    )
+  }
+
   return (
     <section id="projects" className="section-padding bg-white dark:bg-black">
       <div className="container-custom">
@@ -133,7 +201,6 @@ export function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-6xl mx-auto"
         >
           <div className="mb-16">
             <h2 className="text-3xl md:text-4xl font-thin text-gray-900 dark:text-white mb-6 tracking-tight">
@@ -146,44 +213,30 @@ export function Projects() {
           </div>
 
           {/* Grid Layout */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-0 border overflow-hidden" style={{ borderColor: '#0057FF' }}>
+          <div className="hidden md:grid grid-cols-3 gap-0 border overflow-hidden" style={{ borderColor: '#0057FF' }}>
             {projects.map((project, index) => (
-              <motion.div
+              <ProjectCard 
                 key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`group ${project.background} p-6 border-r border-b hover:bg-gray-100 dark:hover:bg-gray-950 transition-all duration-300 cursor-pointer aspect-square flex flex-col justify-between`}
-                style={{ borderColor: '#0057FF' }}
-                onClick={() => setSelectedProject(project.id)}
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="text-lg font-thin text-black dark:text-white">
-                    {String(project.id).padStart(2, '0')}
-                  </div>
-                  <div className="p-1">
-                    {getStatusIcon(project.status)}
-                  </div>
-                </div>
-                
-                <div className="flex-1">
-                  <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-2 group-hover:text-black dark:group-hover:text-white transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  
-                  <p className="text-xs font-light text-gray-500 dark:text-gray-400 leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-                
-                <div className="flex items-center justify-end mt-4">
-                  <div className="p-2 rounded-full transition-all duration-300 group-hover:opacity-80" style={{ backgroundColor: '#0057FF' }}>
-                    <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-all duration-300" />
-                  </div>
-                </div>
-              </motion.div>
+                project={project} 
+                index={index} 
+                onClick={() => setSelectedProject(project.id)} 
+              />
             ))}
+          </div>
+
+          {/* Mobile: Horizontal scroll layout */}
+          <div className="md:hidden">
+            <div className="flex overflow-x-auto scrollbar-hide space-x-0 pb-4">
+              {projects.map((project, index) => (
+                <ProjectCard 
+                  key={project.id}
+                  project={project} 
+                  index={index} 
+                  onClick={() => setSelectedProject(project.id)}
+                  isMobile={true}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Modal */}

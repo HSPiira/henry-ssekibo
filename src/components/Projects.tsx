@@ -145,7 +145,7 @@ export function Projects() {
           </div>
 
           {/* Grid Layout */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-0 border overflow-hidden" style={{ borderColor: '#0057FF' }}>
+          <div className="hidden md:grid grid-cols-3 gap-0 border overflow-hidden" style={{ borderColor: '#0057FF' }}>
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -183,6 +183,52 @@ export function Projects() {
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          {/* Mobile: Horizontal scroll layout */}
+          <div className="md:hidden">
+            <div className="flex overflow-x-auto scrollbar-hide space-x-0 pb-4">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group flex-shrink-0 w-80 p-6 border hover:bg-gray-100 dark:hover:bg-gray-950 transition-all duration-300 cursor-pointer aspect-square flex flex-col justify-between"
+                  style={{ borderColor: '#0057FF' }}
+                  onClick={() => setSelectedProject(project.id)}
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="text-lg font-thin text-black dark:text-white">
+                      {String(project.id).padStart(2, '0')}
+                    </div>
+                    <div className="p-1">
+                      {getStatusIcon(project.status)}
+                    </div>
+                  </div>
+                  
+                  <div className="flex-1">
+                    <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-2 group-hover:text-black dark:group-hover:text-white transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-xs font-light text-gray-500 dark:text-gray-400 leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+                  
+                  <div className="flex items-center justify-between mt-4">
+                    <div className="text-xs text-gray-400 dark:text-gray-500">
+                      Click for details
+                    </div>
+                    <div className="p-2 rounded-full transition-all duration-300 group-hover:opacity-80" style={{ backgroundColor: '#0057FF' }}>
+                      <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-all duration-300" />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           {/* Modal */}

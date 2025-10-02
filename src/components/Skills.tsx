@@ -43,7 +43,6 @@ export function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-6xl mx-auto"
         >
           <div className="mb-12">
             <h2 className="text-2xl md:text-3xl font-thin text-gray-900 dark:text-white mb-6 tracking-tight">

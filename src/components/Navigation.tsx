@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
@@ -10,13 +10,13 @@ export function Navigation() {
   const [activeSection, setActiveSection] = useState('')
   const { theme, toggleTheme } = useTheme()
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Wall of Fame', href: '#projects' },
     { name: 'Experience', href: '#experience' },
     { name: 'Contact', href: '#contact' },
-  ]
+  ], [])
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout
@@ -50,7 +50,7 @@ export function Navigation() {
       window.removeEventListener('scroll', handleScroll)
       clearTimeout(timeoutId)
     }
-  }, [])
+  }, [navItems])
 
   return (
     <nav className="fixed top-0 w-full bg-white/20 dark:bg-black/20 backdrop-blur-xl border-b border-white/20 dark:border-gray-800/20 z-50">

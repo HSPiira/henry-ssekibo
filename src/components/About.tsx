@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
+import Image from 'next/image'
 
 export function About() {
   return (
@@ -51,15 +52,15 @@ export function About() {
             >
               <div className="space-y-4">
                 <p className="text-lg font-light text-gray-600 dark:text-gray-300 leading-relaxed">
-                  I'm a passionate <span className="text-black dark:text-white font-medium">IT Support Specialist</span> and 
+                  I&apos;m a passionate <span className="text-black dark:text-white font-medium">IT Support Specialist</span> and 
                   <span className="text-black dark:text-white font-medium"> Digital Transformation Expert</span> with over 
                   <span className="text-black dark:text-white font-medium"> 5 years</span> of experience at Minet Uganda, 
-                  where I've led digital transformation initiatives and improved operational efficiency by 25%.
+                  where I&apos;ve led digital transformation initiatives and improved operational efficiency by 25%.
                 </p>
                 
                 <p className="text-base font-light text-gray-500 dark:text-gray-400 leading-relaxed">
                   My expertise spans business process automation, full-stack development with .NET and Next.js, 
-                  database management, and cloud solutions. I've successfully implemented automated workflow systems 
+                  database management, and cloud solutions. I&apos;ve successfully implemented automated workflow systems 
                   that reduced manual processing time by 60% and improved infrastructure reliability by 30%.
                 </p>
               </div>
@@ -105,9 +106,11 @@ export function About() {
                   className="relative w-full max-w-md mx-auto"
                 >
                   <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
-                    <img
+                    <Image
                       src="/henry-ssekibo.jpg"
                       alt="Henry Ssekibo - IT Support & Digital Transformation Specialist"
+                      width={400}
+                      height={400}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -187,7 +190,7 @@ export function About() {
               className="group inline-flex items-center text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105"
               style={{ backgroundColor: '#0057FF' }}
             >
-              <span className="group-hover:mr-3 transition-all duration-300">Let's Work Together</span>
+              <span className="group-hover:mr-3 transition-all duration-300">Let&apos;s Work Together</span>
               <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform duration-300" />
             </a>
           </motion.div>

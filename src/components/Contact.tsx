@@ -94,7 +94,7 @@ export function Contact() {
             </h2>
             <div className="w-20 h-1 rounded mb-4" style={{ backgroundColor: '#0057FF' }}></div>
             <p className="text-sm font-light text-gray-500 dark:text-gray-400 max-w-2xl leading-relaxed">
-              Ready to discuss your next project or have questions about my work? I'd love to hear from you.
+              Ready to discuss your next project or have questions about my work? I&apos;d love to hear from you.
             </p>
           </div>
 
@@ -109,12 +109,12 @@ export function Contact() {
             >
               <div>
                 <h3 className="text-2xl proza-libre-bold text-gray-900 dark:text-white mb-6">
-                  Let's Connect
+                  Let&apos;s Connect
                 </h3>
                 <p className="proza-libre-regular text-gray-600 dark:text-gray-300 mb-8">
-                  I'm always interested in new opportunities and exciting projects. 
-                  Whether you're looking for IT support, software development, or digital transformation consulting, 
-                  I'm here to help bring your ideas to life.
+                  I&apos;m always interested in new opportunities and exciting projects. 
+                  Whether you&apos;re looking for IT support, software development, or digital transformation consulting, 
+                  I&apos;m here to help bring your ideas to life.
                 </p>
               </div>
 

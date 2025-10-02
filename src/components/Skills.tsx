@@ -130,7 +130,7 @@ export function Skills() {
               href="#contact"
               className="group inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105"
             >
-              <span className="group-hover:mr-3 transition-all duration-300">Let's Collaborate</span>
+              <span className="group-hover:mr-3 transition-all duration-300">Let&apos;s Collaborate</span>
               <ArrowRight size={16} className="text-white group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform duration-300" />
             </a>
           </motion.div>

@@ -5,18 +5,18 @@ import Link from 'next/link'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
 
+const navItems = [
+  { name: 'About', href: '#about' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Wall of Fame', href: '#projects' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Contact', href: '#contact' },
+]
+
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const { theme, toggleTheme } = useTheme()
-
-  const navItems = [
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Wall of Fame', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' },
-  ]
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout

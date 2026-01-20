@@ -1,30 +1,38 @@
 {
   "name": "henry-ssekibo-portfolio",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
+  "sideEffects": false,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite dev",
+    "build": "vite build && tsc --noEmit",
+    "preview": "vite preview",
+    "start": "node .output/server/index.mjs"
   },
   "dependencies": {
-    "next": "15.5.4",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "lucide-react": "^0.460.0",
-    "framer-motion": "^11.11.17"
+    "@tanstack/react-query": "^5.90.19",
+    "@tanstack/react-router": "^1.153.2",
+    "@tanstack/react-router-devtools": "^1.153.2",
+    "@tanstack/react-start": "^1.153.2",
+    "framer-motion": "^12.27.1",
+    "lucide-react": "^0.562.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "resend": "^6.8.0",
+    "tailwind-merge": "^2.6.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^8",
-    "eslint-config-next": "15.5.4",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/node": "^22.5.4",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^4.6.0",
+    "nitro": "npm:nitro-nightly@latest",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.7.2",
+    "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^5.1.4"
   }
 }
-

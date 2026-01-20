@@ -14,18 +14,20 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'TaskMaster',
-    description: 'Automated insurance workflow alert system that monitors policy deadlines and sends notifications.',
-    fullDescription: 'An automated insurance workflow alert system that monitors policy deadlines and sends notifications to relevant stakeholders. Built with C# and .NET Core, it improves operational efficiency by ensuring no critical deadlines are missed.',
-    technologies: ['C#', '.NET Core', 'Oracle SQL', 'PostgreSQL'],
+    title: "TaskMaster",
+    description: "Automated insurance workflow alert system that monitors policy deadlines and sends notifications.",
+    fullDescription: "TaskMaster is a .NET Worker Service that automates insurance workflow alerts. It monitors policy deadlines, claim events, and client notifications across multiple tenants, sending configurable alerts via email and SMS. The system includes dynamic templates, comprehensive logging, and audit trails to ensure no critical deadlines are missed, improving operational efficiency and reliability.",
+    technologies: ["C#", ".NET Core", "Oracle SQL", "PostgreSQL", "PowerShell (optional scripting)"],
     features: [
-      'Automated policy deadline monitoring',
-      'Multi-channel notification system (Email, SMS)',
-      'Configurable alert rules and escalation paths',
-      'Comprehensive logging and audit trail'
+      "Automated policy deadline and event monitoring",
+      "Multi-channel notification system (Email, SMS) with dynamic templates",
+      "Tenant-aware scheduling and alert escalation paths",
+      "Comprehensive logging, auditing, and observability",
+      "Integration with internal policy and client management systems",
+      "Background worker service for reliable, asynchronous execution"
     ],
-    github: '#',
-    demo: '#',
+    github: 'Private / minet_uganda repo',
+    demo: 'Internal use only',
     image: '/taskmaster.jpg',
     status: 'completed'
   },
@@ -46,25 +48,27 @@ export const projects: Project[] = [
       "Separation of domain logic from persistence and presentation",
       "Designed for clarity and usability by non-technical users"
     ],
-    github: '#',
-    demo: '#',
+    github: 'https://github.com/HSPiira/timeline.git',
+    demo: 'None',
     image: '/timeline.jpg',
     status: 'concept'
   },
   {
     id: 3,
-    title: 'Employee Assistance Program',
-    description: 'Enterprise-grade mental wellness portal with secure authentication and comprehensive reporting.',
-    fullDescription: 'A comprehensive mental wellness portal built with Next.js, featuring secure user authentication, appointment scheduling, and a comprehensive reporting dashboard. The system enables organizations to provide mental health support to their employees through a modern, accessible platform.',
-    technologies: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Tailwind CSS'],
+    title: "Employee Assistance Program",
+    description: "Enterprise-grade mental wellness portal with secure authentication, scheduling, and analytics.",
+    fullDescription: "A comprehensive mental wellness portal built with Next.js and Prisma, designed for enterprise use. The system supports secure user authentication, role-based access, appointment scheduling, and calendar integration. It also includes detailed reporting and analytics dashboards for tracking utilization and outcomes. Designed to be mobile-responsive with dark mode, the platform enables organizations to provide confidential, accessible, and modern mental health support to employees.",
+    technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS", "Upstash Redis"],
     features: [
-      'Secure user authentication and role-based access',
-      'Appointment scheduling and calendar integration',
-      'Comprehensive reporting and analytics dashboard',
-      'Mobile-responsive design with dark mode support'
+      "Secure user authentication with role-based access control",
+      "Appointment scheduling and calendar integration",
+      "Comprehensive reporting and analytics dashboards",
+      "Audit trail and encrypted data handling for confidentiality",
+      "Configurable client onboarding workflows and parameters",
+      "Integration with internal organizational systems for seamless data flow"
     ],
-    github: '#',
-    demo: '#',
+    github: 'Private / minet_ug repo',
+    demo: 'Internal use only',
     image: '/eap.jpg',
     status: 'completed'
   },

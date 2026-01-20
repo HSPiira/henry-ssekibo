@@ -14,6 +14,23 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
+    title: 'Employee Assistance Program',
+    description: 'Enterprise-grade mental wellness portal with secure authentication and comprehensive reporting.',
+    fullDescription: 'A comprehensive mental wellness portal built with Next.js, featuring secure user authentication, appointment scheduling, and a comprehensive reporting dashboard. The system enables organizations to provide mental health support to their employees through a modern, accessible platform.',
+    technologies: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Tailwind CSS'],
+    features: [
+      'Secure user authentication and role-based access',
+      'Appointment scheduling and calendar integration',
+      'Comprehensive reporting and analytics dashboard',
+      'Mobile-responsive design with dark mode support'
+    ],
+    github: '#',
+    demo: '#',
+    image: 'public/eap.jpg',
+    status: 'completed'
+  },
+  {
+    id: 2,
     title: 'TaskMaster',
     description: 'Automated insurance workflow alert system that monitors policy deadlines and sends notifications.',
     fullDescription: 'An automated insurance workflow alert system that monitors policy deadlines and sends notifications to relevant stakeholders. Built with C# and .NET Core, it improves operational efficiency by ensuring no critical deadlines are missed.',
@@ -26,11 +43,11 @@ export const projects: Project[] = [
     ],
     github: '#',
     demo: '#',
-    image: '/taskmaster.jpg',
+    image: 'public/taskmaster.jpg',
     status: 'completed'
   },
   {
-    id: 2,
+    id: 3,
     title: "Timeline",
     description: "Event-centric system for modeling subjects, events, and their relationships over time.",
     fullDescription:
@@ -48,25 +65,8 @@ export const projects: Project[] = [
     ],
     github: '#',
     demo: '#',
-    image: '/timeline.jpg',
+    image: 'public/timeline.jpg',
     status: 'concept'
-  },
-  {
-    id: 3,
-    title: 'Employee Assistance Program',
-    description: 'Enterprise-grade mental wellness portal with secure authentication and comprehensive reporting.',
-    fullDescription: 'A comprehensive mental wellness portal built with Next.js, featuring secure user authentication, appointment scheduling, and a comprehensive reporting dashboard. The system enables organizations to provide mental health support to their employees through a modern, accessible platform.',
-    technologies: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Tailwind CSS'],
-    features: [
-      'Secure user authentication and role-based access',
-      'Appointment scheduling and calendar integration',
-      'Comprehensive reporting and analytics dashboard',
-      'Mobile-responsive design with dark mode support'
-    ],
-    github: '#',
-    demo: '#',
-    image: '/eap.jpg',
-    status: 'completed'
   },
   {
     id: 4,
@@ -116,7 +116,7 @@ export const projects: Project[] = [
     ],
     github: '#',
     demo: '#',
-    image: '/hms.jpg',
+    image: 'public/hms.jpg',
     status: 'development'
   }
 ]

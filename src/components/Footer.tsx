@@ -1,77 +1,110 @@
-import { Github, Linkedin, Mail, Phone } from 'lucide-react'
+import { Github, Linkedin, Twitter, Mail, ArrowUpRight } from 'lucide-react'
+
+const socialLinks = [
+  { icon: Github, name: 'GitHub', url: 'https://github.com/henry-ssekibo' },
+  { icon: Linkedin, name: 'LinkedIn', url: 'https://linkedin.com/in/henry-ssekibo' },
+  { icon: Twitter, name: 'Twitter', url: 'https://twitter.com/henry_ssekibo' },
+  { icon: Mail, name: 'Email', url: 'mailto:sekiboh@gmail.com' }
+]
+
+const navLinks = [
+  { name: 'About', href: '#about' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Contact', href: '#contact' }
+]
 
 export function Footer() {
-  return (
-    <footer className="bg-gray-50 dark:bg-black border-t border-gray-200 dark:border-gray-700">
-      <div className="container-custom section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              Henry Ssekibo
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              IT Support & Digital Transformation Specialist
-            </p>
-          </div>
+  const currentYear = new Date().getFullYear()
 
-          <div>
-            <h4 className="text-md font-semibold text-gray-900 dark:text-white mb-4">
-              Quick Links
-            </h4>
-            <div className="space-y-2">
-              <a href="#about" className="block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                About
-              </a>
-              <a href="#projects" className="block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                Wall of Fame
-              </a>
-              <a href="#contact" className="block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                Contact
-              </a>
+  return (
+    <footer className="bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800">
+      <div className="container-custom">
+        {/* Main Footer */}
+        <div className="py-16 grid md:grid-cols-12 gap-12">
+          {/* Brand */}
+          <div className="md:col-span-5">
+            <a href="#" className="text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">
+              HS<span className="text-zinc-400">.</span>
+            </a>
+            <p className="mt-4 text-body max-w-sm">
+              IT Support & Digital Transformation Specialist. Building scalable systems and enabling digital transformation in Africa.
+            </p>
+            {/* Social Links */}
+            <div className="flex gap-2 mt-6">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-icon"
+                  aria-label={social.name}
+                >
+                  <social.icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          <div>
-            <h4 className="text-md font-semibold text-gray-900 dark:text-white mb-4">
-              Connect
+          {/* Navigation */}
+          <div className="md:col-span-3">
+            <h4 className="text-xs font-semibold text-zinc-900 dark:text-white uppercase tracking-wider mb-4">
+              Navigation
             </h4>
-            <div className="flex space-x-4">
+            <ul className="space-y-3">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors inline-flex items-center gap-1 group"
+                  >
+                    {link.name}
+                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 transition-all" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="md:col-span-4">
+            <h4 className="text-xs font-semibold text-zinc-900 dark:text-white uppercase tracking-wider mb-4">
+              Get in Touch
+            </h4>
+            <div className="space-y-3">
               <a
-                href="mailto:henry.ssekibo@example.com"
-                className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                aria-label="Email"
+                href="mailto:sekiboh@gmail.com"
+                className="block text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors"
               >
-                <Mail size={20} className="text-gray-600 dark:text-gray-300" />
+                sekiboh@gmail.com
               </a>
               <a
-                href="https://linkedin.com/in/henry-ssekibo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                aria-label="LinkedIn"
+                href="tel:+256703442862"
+                className="block text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors"
               >
-                <Linkedin size={20} className="text-gray-600 dark:text-gray-300" />
+                +256 703 442 862
               </a>
-              <a
-                href="https://github.com/henry-ssekibo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={20} className="text-gray-600 dark:text-gray-300" />
-              </a>
+              <p className="text-sm text-zinc-500">
+                Kampala, Uganda
+              </p>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-600 dark:text-gray-300">
-            © 2024 Henry Ssekibo. All rights reserved.
-          </p>
+        {/* Bottom Bar */}
+        <div className="py-6 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-zinc-500">
+              &copy; {currentYear} Henry Ssekibo. All rights reserved.
+            </p>
+            <p className="text-sm text-zinc-500">
+              Built with TanStack Start
+            </p>
+          </div>
         </div>
       </div>
     </footer>
   )
 }
-

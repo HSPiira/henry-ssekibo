@@ -1,56 +1,36 @@
-# Henry Ssekibo - Portfolio Website
+# TanStack Start - Basic Example
 
-A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS.
+This is the basic TanStack Start example, demonstrating the fundamentals of building applications with TanStack Router and TanStack Start.
 
-## Features
+- [TanStack Router Docs](https://tanstack.com/router)
 
-- 🎨 Modern, clean design with dark/light mode toggle
-- 📱 Fully responsive across all devices
-- ⚡ Fast loading with Next.js optimization
-- 🎭 Smooth animations with Framer Motion
-- 📧 Contact form with validation
-- 📄 CV download functionality
-- 🔍 SEO optimized
+It's deployed automagically with Netlify!
 
-## Tech Stack
+- [Netlify](https://netlify.com/)
 
-- **Framework**: Next.js 15.5.4
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Deployment**: Vercel (recommended)
+## Start a new project based on this example
+
+To start a new project based on this example, run:
+
+```sh
+npx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic
+```
 
 ## Getting Started
 
-1. Install dependencies:
-```bash
-npm install
+From your terminal:
+
+```sh
+pnpm install
+pnpm dev
 ```
 
-2. Run the development server:
-```bash
-npm run dev
+This starts your app in development mode, rebuilding assets on file changes.
+
+## Build
+
+To build the app for production:
+
+```sh
+pnpm build
 ```
-
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Deployment
-
-The easiest way to deploy is using [Vercel](https://vercel.com):
-
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy with one click
-
-## Customization
-
-- Update personal information in the component files
-- Replace placeholder images with your own
-- Modify colors in `tailwind.config.ts`
-- Add your CV PDF to the `public` folder
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
-

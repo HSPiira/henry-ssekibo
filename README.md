@@ -1,36 +1,11 @@
-# TanStack Start - Basic Example
+# Portfolio
 
-This is the basic TanStack Start example, demonstrating the fundamentals of building applications with TanStack Router and TanStack Start.
+Personal software engineering portfolio showcasing selected professional and personal projects.
 
-- [TanStack Router Docs](https://tanstack.com/router)
+Focus areas include backend systems, automation, domain-driven design, and enterprise tooling. Projects range from event-centric platforms and background worker services to internal business systems and dashboards.
 
-It's deployed automagically with Netlify!
+Some repositories and demos are private or company-owned and are therefore described at a high level only.
 
-- [Netlify](https://netlify.com/)
+**Technologies:** C#, .NET, Python, Next.js, TypeScript, PostgreSQL, SQL Server, Power BI
 
-## Start a new project based on this example
-
-To start a new project based on this example, run:
-
-```sh
-npx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic
-```
-
-## Getting Started
-
-From your terminal:
-
-```sh
-pnpm install
-pnpm dev
-```
-
-This starts your app in development mode, rebuilding assets on file changes.
-
-## Build
-
-To build the app for production:
-
-```sh
-pnpm build
-```
+For details on specific projects or architecture discussions, feel free to reach out.

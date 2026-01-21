@@ -149,20 +149,20 @@ export function Journey() {
                     {/* Content */}
                     <div className="p-6">
                       {/* Header */}
-                      <div className="mb-4">
+                      <div className="mb-4 flex items-center gap-3">
+                        <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">
+                          {currentProject.title}
+                        </h3>
                         {(() => {
                           const config = getStatusConfig(currentProject.status)
                           const Icon = config.icon
                           return (
-                            <div className="flex items-center gap-2 mb-2">
+                            <div className="flex items-center gap-2">
                               <Icon className={`w-4 h-4 ${config.color}`} />
                               <span className="text-sm text-zinc-500">{config.label}</span>
                             </div>
                           )
                         })()}
-                        <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">
-                          {currentProject.title}
-                        </h3>
                       </div>
 
                       {/* Description */}
@@ -189,9 +189,6 @@ export function Journey() {
 
                       {/* Technologies */}
                       <div className="mb-6 pt-6 border-t border-zinc-200 dark:border-zinc-800">
-                        <h4 className="text-sm font-medium text-zinc-900 dark:text-white mb-3">
-                          Built with
-                        </h4>
                         <div className="flex flex-wrap gap-2">
                           {currentProject.technologies.map((tech) => (
                             <span key={tech} className="tag">

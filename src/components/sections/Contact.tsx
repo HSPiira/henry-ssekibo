@@ -53,7 +53,7 @@ export function Contact() {
   ]
 
   const socialLinks = [
-    { icon: Github, name: 'GitHub', url: 'https://github.com/henry-ssekibo' },
+    { icon: Github, name: 'GitHub', url: 'https://github.com/hspiira' },
     { icon: Linkedin, name: 'LinkedIn', url: 'https://linkedin.com/in/henry-ssekibo' },
     { icon: Twitter, name: 'Twitter', url: 'https://twitter.com/henry_ssekibo' }
   ]

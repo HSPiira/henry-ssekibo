@@ -17,7 +17,7 @@ export const projects: Project[] = [
     title: "TaskMaster",
     description: "Automated insurance workflow alert system that monitors policy deadlines and sends notifications.",
     fullDescription: "TaskMaster is a .NET Worker Service that automates insurance workflow alerts. It monitors policy deadlines, claim events, and client notifications across multiple tenants, sending configurable alerts via email and SMS. The system includes dynamic templates, comprehensive logging, and audit trails to ensure no critical deadlines are missed, improving operational efficiency and reliability.",
-    technologies: ["C#", ".NET Core", "Oracle SQL", "PostgreSQL", "PowerShell (optional scripting)"],
+    technologies: ["C#", ".NET Core", "Oracle SQL", "PostgreSQL"],
     features: [
       "Automated policy deadline and event monitoring",
       "Multi-channel notification system (Email, SMS) with dynamic templates",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     github: 'https://github.com/HSPiira/timeline.git',
     demo: 'None',
     image: '/timeline.jpg',
-    status: 'concept'
+    status: 'development'
   },
   {
     id: 3,

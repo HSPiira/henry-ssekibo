@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1600" viewBox="0 0 1600 1600">
+  <rect width="1600" height="1600" fill="#ffffff"></rect>
+  <g transform="translate(0,350)">
+    <rect width="1600" height="900" fill="#ffffff"></rect>
+
+    <g font-family="IBM Plex Mono, Menlo, Consolas, monospace">
+      <rect x="100" y="88" width="12" height="12" fill="#c03a1c"></rect>
+      <text x="132" y="100" font-size="20" letter-spacing="0.4" fill="#6f6f67">Minet Uganda</text>
+      <text x="1500" y="100" font-size="20" letter-spacing="0.4" fill="#6f6f67" text-anchor="end">Multi-tenant</text>
+      <text x="100" y="852" font-size="19" letter-spacing="0.3" fill="#6f6f67">Entra single sign-on · encrypted records</text>
+      <text x="1500" y="852" font-size="19" letter-spacing="0.3" fill="#6f6f67" text-anchor="end">Complete audit trail</text>
+    </g>
+    <line x1="100" y1="136" x2="1500" y2="136" stroke="#12120f" stroke-width="1"></line>
+    <g font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="66" font-weight="600" letter-spacing="-2">
+      <text x="100" y="268" fill="#12120f">Three roles, three depths</text>
+      <text x="100" y="348" fill="#6f6f67">of the same record.</text>
+    </g>
+    <line x1="1020" y1="452" x2="1020" y2="742" stroke="#12120f" stroke-width="1"></line>
+    <g>
+      <text x="100" y="525" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="38" font-weight="600" letter-spacing="-1.2" fill="#12120f">Counsellor</text>
+      <text x="470" y="521" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="22" fill="#55554f">Session records, own clients</text>
+      <rect x="1020" y="501" width="480" height="22" fill="#c03a1c"></rect>
+    </g>
+    <g>
+      <text x="100" y="625" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="38" font-weight="600" letter-spacing="-1.2" fill="#12120f">Coordinator</text>
+      <text x="470" y="621" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="22" fill="#55554f">Scheduling, contracts, catalogue</text>
+      <rect x="1020" y="601" width="300" height="22" fill="#c03a1c"></rect>
+    </g>
+    <g>
+      <text x="100" y="725" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="38" font-weight="600" letter-spacing="-1.2" fill="#12120f">Executive</text>
+      <text x="470" y="721" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="22" fill="#55554f">Aggregate utilisation only</text>
+      <rect x="1020" y="701" width="140" height="22" fill="#c03a1c"></rect>
+    </g>
+    <text x="1032" y="774" font-family="IBM Plex Mono, Menlo, Consolas, monospace" font-size="17" letter-spacing="0.3" fill="#6f6f67">Reach into the record</text>
+    <rect x="0" y="884" width="1600" height="16" fill="#12120f"></rect>
+    <rect x="0" y="884" width="300" height="16" fill="#c03a1c"></rect>
+  </g>
+</svg>

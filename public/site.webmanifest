@@ -1,19 +1,21 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "Henry Ssekibo",
+  "short_name": "Henry Ssekibo",
+  "description": "Senior Software Engineer and Digital Transformation Specialist, Kampala, Uganda.",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#0b0b0a",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "standalone",
+  "start_url": "/"
 }

@@ -1,10 +1,4 @@
-import {
-  ErrorComponent,
-  Link,
-  rootRouteId,
-  useMatch,
-  useRouter,
-} from '@tanstack/react-router'
+import { Link, rootRouteId, useMatch, useRouter } from '@tanstack/react-router'
 import type { ErrorComponentProps } from '@tanstack/react-router'
 
 export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
@@ -17,35 +11,44 @@ export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
   console.error('DefaultCatchBoundary Error:', error)
 
   return (
-    <div className="min-w-0 flex-1 p-4 flex flex-col items-center justify-center gap-6">
-      <ErrorComponent error={error} />
-      <div className="flex gap-2 items-center flex-wrap">
+    <div className="shell min-h-[70vh] flex flex-col justify-center py-24">
+      <p className="label mb-6">Something went wrong</p>
+
+      <h1 className="heading max-w-[18ch] mb-5">
+        This page failed to load.
+      </h1>
+
+      <p className="prose-body max-w-[48ch] mb-8">
+        An unexpected error interrupted rendering. Retrying often clears it.
+      </p>
+
+      {error instanceof Error && error.message && (
+        <pre className="font-mono text-xs text-muted bg-surface border border-rule p-4 mb-10 overflow-x-auto max-w-full">
+          {error.message}
+        </pre>
+      )}
+
+      <div className="flex flex-wrap gap-3">
         <button
-          onClick={() => {
-            router.invalidate()
-          }}
-          className={`px-2 py-1 bg-gray-600 dark:bg-gray-700 rounded-sm text-white uppercase font-extrabold`}
+          type="button"
+          onClick={() => router.invalidate()}
+          className="btn btn-solid"
         >
-          Try Again
+          Try again
         </button>
+
         {isRoot ? (
-          <Link
-            to="/"
-            className={`px-2 py-1 bg-gray-600 dark:bg-gray-700 rounded-sm text-white uppercase font-extrabold`}
-          >
+          <Link to="/" className="btn btn-outline">
             Home
           </Link>
         ) : (
-          <Link
-            to="/"
-            className={`px-2 py-1 bg-gray-600 dark:bg-gray-700 rounded-sm text-white uppercase font-extrabold`}
-            onClick={(e) => {
-              e.preventDefault()
-              window.history.back()
-            }}
+          <button
+            type="button"
+            onClick={() => window.history.back()}
+            className="btn btn-outline"
           >
-            Go Back
-          </Link>
+            Go back
+          </button>
         )}
       </div>
     </div>

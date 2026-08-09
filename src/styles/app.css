@@ -1,481 +1,343 @@
-/* Red Hat Display Font */
-@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
-
 @import 'tailwindcss';
 
-/* ============================================
-   LYRA DESIGN SYSTEM
-   Sharp edges, zinc palette, strategic color accents
-   Sheet-based section reveals
-   ============================================ */
+/* ============================================================
+   Design system
+
+   Swiss technical: one grotesque, one mono, hairline rules as the
+   primary structural device, a single accent used sparingly.
+
+   Colour is defined once as raw CSS variables that flip on `.dark`,
+   then exposed to Tailwind via `@theme inline`. Utilities such as
+   `text-ink` and `border-rule` therefore resolve correctly in both
+   themes with no `dark:` duplication at the call site.
+   ============================================================ */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --c-canvas: #ffffff;
+  --c-surface: #f6f6f4;
+  --c-sunken: #eeeeea;
+  --c-ink: #12120f;
+  --c-muted: #55554f;
+  /* 5.1:1 on canvas. The `.label` style sets it at 11px, so it needs
+     headroom above the 4.5:1 floor rather than to sit exactly on it. */
+  --c-faint: #6f6f67;
+  --c-rule: #e2e2dc;
+  --c-rule-strong: #c9c9c1;
+  --c-accent: #c03a1c;
+  --c-accent-ink: #ffffff;
+  --c-accent-wash: #fbeeea;
+
+  color-scheme: light;
+}
+
+.dark {
+  --c-canvas: #0b0b0a;
+  --c-surface: #131312;
+  --c-sunken: #1b1b19;
+  --c-ink: #f4f4f1;
+  --c-muted: #a6a69e;
+  --c-faint: #8a8a82;
+  --c-rule: #272724;
+  --c-rule-strong: #3b3b36;
+  --c-accent: #ff7a55;
+  --c-accent-ink: #1a0a05;
+  --c-accent-wash: #2a1610;
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--c-canvas);
+  --color-surface: var(--c-surface);
+  --color-sunken: var(--c-sunken);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-faint: var(--c-faint);
+  --color-rule: var(--c-rule);
+  --color-rule-strong: var(--c-rule-strong);
+  --color-accent: var(--c-accent);
+  --color-accent-ink: var(--c-accent-ink);
+  --color-accent-wash: var(--c-accent-wash);
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
 
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-zinc-200, currentcolor);
-    border-radius: 0 !important;
-  }
-
-  html {
-    color-scheme: light dark;
-  }
-
   * {
-    @apply border-zinc-200 dark:border-zinc-800;
-    font-family: "Red Hat Display", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    border-color: var(--c-rule);
   }
 
   html {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
     scroll-behavior: smooth;
+    /* Clears the fixed header on anchor navigation. */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
-    @apply text-zinc-900 bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-100;
-    font-family: "Red Hat Display", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    background-color: var(--c-canvas);
+    color: var(--c-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'ss01';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-optical-sizing: auto;
   }
 
-  /* Hide scrollbar but allow scrolling */
-  html::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
-
-  html {
-    scrollbar-width: none;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: "Red Hat Display", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4 {
     font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    letter-spacing: -0.022em;
+    line-height: 1.08;
+    text-wrap: balance;
   }
 
-  p {
-    line-height: 1.75;
-    letter-spacing: 0.01em;
+  ::selection {
+    background-color: var(--c-accent);
+    color: var(--c-accent-ink);
   }
 
-  .using-mouse * {
-    outline: none !important;
+  :focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
+  }
+
+  /* Tabular figures everywhere numbers are compared vertically. */
+  .nums {
+    font-variant-numeric: tabular-nums;
   }
 }
 
 @layer components {
-  /* ============================================
-     SHEET SYSTEM - Cards that stack/reveal
-     ============================================ */
+  /* --- Layout ------------------------------------------------ */
 
-  /* ============================================
-     SNAP SECTIONS - Full viewport sections
-     ============================================ */
-
-  .snap-section {
-    scroll-snap-align: start;
-    scroll-margin-top: 4rem; /* Account for fixed nav h-16 */
-    min-height: 100vh;
-    overflow-y: auto;
+  .shell {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
   }
 
   @media (min-width: 768px) {
-    .snap-section {
-      scroll-margin-top: 5rem; /* Account for fixed nav md:h-20 */
+    .shell {
+      padding-inline: 2.5rem;
     }
   }
 
-  .sheet {
-    @apply relative bg-white dark:bg-zinc-950;
-    scroll-snap-align: start;
-    scroll-margin-top: 4rem;
-    min-height: 100vh;
-  }
-
-  @media (min-width: 768px) {
-    .sheet {
-      scroll-margin-top: 5rem;
+  @media (min-width: 1280px) {
+    .shell {
+      padding-inline: 3.5rem;
     }
   }
 
-  .sheet-alt {
-    @apply relative bg-zinc-50 dark:bg-zinc-900;
-    scroll-snap-align: start;
-    scroll-margin-top: 4rem;
-    min-height: 100vh;
+  /* --- Typography -------------------------------------------- */
+
+  /*
+   * Mono metadata. Marks text as data rather than prose, without shouting.
+   * Case is whatever the author wrote.
+   */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--c-faint);
   }
 
-  @media (min-width: 768px) {
-    .sheet-alt {
-      scroll-margin-top: 5rem;
-    }
+  /*
+   * The uppercase variant is reserved for section headers, where it acts as
+   * a structural marker. Used nowhere else, so it keeps its weight.
+   */
+  .label-caps {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c-faint);
   }
 
-  /* ============================================
-     COLOR ACCENTS - Strategic pops
-     ============================================ */
-
-  .accent-emerald {
-    @apply text-emerald-600 dark:text-emerald-400;
+  .display {
+    font-size: clamp(2.75rem, 8vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    font-weight: 600;
   }
 
-  .accent-violet {
-    @apply text-violet-600 dark:text-violet-400;
+  .heading {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.026em;
+    font-weight: 600;
   }
 
-  .accent-amber {
-    @apply text-amber-600 dark:text-amber-400;
+  .lede {
+    font-size: clamp(1.0625rem, 1.6vw, 1.375rem);
+    line-height: 1.55;
+    color: var(--c-muted);
+    letter-spacing: -0.008em;
   }
 
-  .accent-sky {
-    @apply text-sky-600 dark:text-sky-400;
+  .prose-body {
+    line-height: 1.7;
+    color: var(--c-muted);
   }
 
-  /* ============================================
-     LYRA BUTTON SYSTEM
-     ============================================ */
+  /* --- Rules -------------------------------------------------- */
 
-  .btn-primary {
-    @apply relative inline-flex items-center justify-center;
-    @apply font-medium py-3.5 px-7 transition-all duration-200;
-    @apply bg-zinc-900 dark:bg-white text-white dark:text-zinc-900;
-    @apply hover:bg-zinc-800 dark:hover:bg-zinc-100;
-    @apply active:scale-[0.98];
-    @apply border border-zinc-900 dark:border-white;
+  .rule-top {
+    border-top: 1px solid var(--c-rule);
   }
 
-  .btn-secondary {
-    @apply relative inline-flex items-center justify-center;
-    @apply font-medium py-3.5 px-7 transition-all duration-200;
-    @apply bg-transparent text-zinc-900 dark:text-white;
-    @apply hover:bg-zinc-100 dark:hover:bg-zinc-800;
-    @apply active:scale-[0.98];
-    @apply border border-zinc-300 dark:border-zinc-700;
+  .rule-bottom {
+    border-bottom: 1px solid var(--c-rule);
   }
 
-  .btn-accent {
-    @apply relative inline-flex items-center justify-center;
-    @apply font-medium py-3.5 px-7 transition-all duration-200;
-    @apply bg-emerald-600 dark:bg-emerald-500 text-white;
-    @apply hover:bg-emerald-700 dark:hover:bg-emerald-400;
-    @apply active:scale-[0.98];
-    @apply border border-emerald-600 dark:border-emerald-500;
+  /* --- Controls ----------------------------------------------- */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1;
+    border: 1px solid transparent;
+    transition:
+      background-color 0.15s ease,
+      border-color 0.15s ease,
+      color 0.15s ease;
   }
 
-  .btn-ghost {
-    @apply relative inline-flex items-center justify-center;
-    @apply font-medium py-3.5 px-7 transition-all duration-200;
-    @apply bg-transparent text-zinc-600 dark:text-zinc-400;
-    @apply hover:text-zinc-900 dark:hover:text-white;
-    @apply active:scale-[0.98];
+  .btn-solid {
+    background-color: var(--c-ink);
+    color: var(--c-canvas);
+    border-color: var(--c-ink);
   }
 
+  .btn-solid:hover {
+    background-color: var(--c-accent);
+    border-color: var(--c-accent);
+    color: var(--c-accent-ink);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: var(--c-ink);
+    border-color: var(--c-rule-strong);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--c-ink);
+    background-color: var(--c-surface);
+  }
+
+  /* Borderless: the icon carries the affordance, a box around it does not. */
   .btn-icon {
-    @apply inline-flex items-center justify-center;
-    @apply p-3 transition-all duration-200;
-    @apply bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400;
-    @apply hover:bg-zinc-100 dark:hover:bg-zinc-700 hover:text-zinc-900 dark:hover:text-white;
-    @apply border border-zinc-200 dark:border-zinc-700;
-    @apply active:scale-95;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--c-muted);
+    transition: color 0.15s ease;
   }
 
-  .btn-sm {
-    @apply py-2.5 px-5 text-sm;
+  .btn-icon:hover {
+    color: var(--c-ink);
   }
 
-  /* ============================================
-     LAYOUT
-     ============================================ */
-
-  .section-padding {
-    @apply py-12 md:py-16;
+  .field {
+    width: 100%;
+    padding: 0.75rem 0;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--c-rule);
+    color: var(--c-ink);
+    font-size: 0.9375rem;
+    transition: border-color 0.15s ease;
   }
 
-  .container-custom {
-    @apply max-w-6xl mx-auto px-6 sm:px-8 lg:px-12;
+  .field::placeholder {
+    color: var(--c-faint);
   }
 
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--c-accent);
   }
 
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* ============================================
-     CARD SYSTEM
-     ============================================ */
-
-  .card {
-    @apply bg-white dark:bg-zinc-900;
-    @apply border border-zinc-200 dark:border-zinc-800;
-    @apply transition-all duration-300;
-  }
-
-  .card-hover {
-    @apply hover:border-zinc-400 dark:hover:border-zinc-600;
-    @apply hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-zinc-900/50;
-  }
-
-  .card-interactive {
-    @apply cursor-pointer;
-    @apply hover:border-zinc-900 dark:hover:border-zinc-100;
-    @apply hover:-translate-y-0.5;
-  }
-
-  /* ============================================
-     GLASS EFFECT
-     ============================================ */
-
-  .glass {
-    @apply bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl;
-    @apply border-b border-zinc-200 dark:border-zinc-800;
-  }
-
-  /* ============================================
-     TYPOGRAPHY
-     ============================================ */
-
-  .text-display {
-    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-  }
-
-  .text-headline {
-    @apply text-2xl sm:text-3xl md:text-4xl font-semibold;
-    letter-spacing: -0.02em;
-  }
-
-  .text-title {
-    @apply text-xl md:text-2xl font-medium;
-  }
-
-  .text-body {
-    @apply text-base text-zinc-600 dark:text-zinc-400 leading-relaxed;
-  }
-
-  .text-body-lg {
-    @apply text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed;
-  }
-
-  .text-caption {
-    @apply text-sm text-zinc-500;
-  }
-
-  /* ============================================
-     SECTION HEADERS - Friendly, no uppercase
-     ============================================ */
-
-  .section-label {
-    @apply inline-flex items-center gap-2 text-sm font-medium;
-    @apply text-zinc-500 dark:text-zinc-400;
-    @apply mb-3;
-  }
-
-  .section-label::before {
-    content: '';
-    @apply w-6 h-0.5 bg-zinc-400 dark:bg-zinc-600;
-  }
-
-  .section-title {
-    @apply text-3xl md:text-4xl font-semibold text-zinc-900 dark:text-white mb-4;
-    letter-spacing: -0.02em;
-  }
-
-  .section-description {
-    @apply text-lg text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed;
-  }
-
-  /* ============================================
-     SUBTLE GRID BACKGROUND
-     ============================================ */
-
-  .grid-pattern {
-    background-image:
-      linear-gradient(to right, rgba(113,113,122,0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(113,113,122,0.04) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-
-  .dark .grid-pattern {
-    background-image:
-      linear-gradient(to right, rgba(113,113,122,0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(113,113,122,0.06) 1px, transparent 1px);
-  }
-
-  /* ============================================
-     BADGE & TAG SYSTEM
-     ============================================ */
-
-  .badge {
-    @apply inline-flex items-center gap-2.5 px-4 py-2;
-    @apply bg-white dark:bg-zinc-800;
-    @apply border border-zinc-200 dark:border-zinc-700;
-    @apply text-sm text-zinc-600 dark:text-zinc-400;
-  }
-
-  .badge-status {
-    @apply relative flex h-2 w-2;
-  }
-
-  .badge-status-dot {
-    @apply absolute inline-flex h-full w-full opacity-75 animate-ping;
-    @apply bg-emerald-500;
-  }
-
-  .badge-status-core {
-    @apply relative inline-flex h-2 w-2;
-    @apply bg-emerald-500;
-  }
+  /* --- Tags --------------------------------------------------- */
 
   .tag {
-    @apply inline-flex px-3 py-1.5 text-xs font-medium;
-    @apply bg-zinc-100 dark:bg-zinc-800;
-    @apply text-zinc-600 dark:text-zinc-400;
-    @apply border border-zinc-200 dark:border-zinc-700;
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    padding: 0.25rem 0.5rem;
+    color: var(--c-muted);
+    border: 1px solid var(--c-rule);
+    white-space: nowrap;
   }
 
-  .tag-sm {
-    @apply px-2.5 py-1 text-xs;
-    @apply bg-zinc-100 dark:bg-zinc-800;
-    @apply text-zinc-500 dark:text-zinc-400;
+  /* --- Grid overlay ------------------------------------------- */
+
+  /* Three columns on small screens, six from tablet up: at 375px a
+     six-column overlay reads as noise rather than structure. */
+  .hairline-grid {
+    background-image:
+      linear-gradient(to right, var(--c-rule) 1px, transparent 1px);
+    background-size: calc(100% / 3) 100%;
   }
 
-  /* ============================================
-     FORM ELEMENTS
-     ============================================ */
-
-  .input-field {
-    @apply w-full px-4 py-3.5 transition-all duration-200;
-    @apply bg-white dark:bg-zinc-900;
-    @apply border border-zinc-200 dark:border-zinc-700;
-    @apply text-zinc-900 dark:text-zinc-100;
-    @apply placeholder:text-zinc-400 dark:placeholder:text-zinc-500;
-    @apply focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100;
-  }
-
-  /* ============================================
-     ICON CONTAINERS
-     ============================================ */
-
-  .icon-box {
-    @apply flex items-center justify-center;
-    @apply w-12 h-12;
-    @apply bg-zinc-100 dark:bg-zinc-800;
-    @apply border border-zinc-200 dark:border-zinc-700;
-    @apply text-zinc-600 dark:text-zinc-400;
-  }
-
-  .icon-box-lg {
-    @apply w-14 h-14;
-  }
-
-  .icon-box-sm {
-    @apply w-10 h-10;
-  }
-
-  .icon-box-accent {
-    @apply bg-emerald-50 dark:bg-emerald-900/20;
-    @apply border-emerald-200 dark:border-emerald-800;
-    @apply text-emerald-600 dark:text-emerald-400;
-  }
-
-  /* ============================================
-     DIVIDERS
-     ============================================ */
-
-  .divider {
-    @apply border-t border-zinc-200 dark:border-zinc-800;
-  }
-
-  /* ============================================
-     LOADING
-     ============================================ */
-
-  .spinner {
-    @apply animate-spin text-zinc-400;
-  }
-
-  /* ============================================
-     PROJECT CARD
-     ============================================ */
-
-  .project-card {
-    @apply relative;
-    @apply bg-white dark:bg-zinc-900;
-    @apply border border-zinc-200 dark:border-zinc-800;
-    @apply transition-all duration-300;
-    @apply hover:border-zinc-300 dark:hover:border-zinc-700;
-    @apply hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-black/20;
-  }
-
-  /* ============================================
-     CONTACT CARD
-     ============================================ */
-
-  .contact-card {
-    @apply flex items-center gap-4 p-5;
-    @apply bg-white dark:bg-zinc-900;
-    @apply border border-zinc-200 dark:border-zinc-800;
-    @apply transition-all duration-200;
-    @apply hover:border-zinc-300 dark:hover:border-zinc-700;
-  }
-
-  /* ============================================
-     MODAL
-     ============================================ */
-
-  .modal-overlay {
-    @apply fixed inset-0 bg-black/60 backdrop-blur-sm z-50;
-    @apply flex items-center justify-center p-4;
-  }
-
-  .modal-content {
-    @apply bg-white dark:bg-zinc-900;
-    @apply border border-zinc-200 dark:border-zinc-800;
-    @apply max-w-2xl w-full max-h-[90vh] overflow-y-auto;
-  }
-
-  /* ============================================
-     HIGHLIGHT BOX - Colored accent borders
-     ============================================ */
-
-  .highlight-box {
-    @apply p-5 border-l-4 bg-zinc-50 dark:bg-zinc-900;
-  }
-
-  .highlight-emerald {
-    @apply border-l-emerald-500;
-  }
-
-  .highlight-violet {
-    @apply border-l-violet-500;
-  }
-
-  .highlight-amber {
-    @apply border-l-amber-500;
-  }
-
-  .highlight-sky {
-    @apply border-l-sky-500;
+  @media (min-width: 768px) {
+    .hairline-grid {
+      background-size: calc(100% / 6) 100%;
+    }
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /*
+   * Scroll reveal.
+   *
+   * Hidden state applies only once the inline head script has added `.js`
+   * to <html>. Server-rendered HTML is therefore visible by default: if
+   * JavaScript fails, the observer never runs, or the user lands mid-page,
+   * content can never be left stranded at opacity 0.
+   */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
   }
 
-  .transition-smooth {
-    @apply transition-all duration-300 ease-out;
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal],
+    .js [data-reveal].is-visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 }
